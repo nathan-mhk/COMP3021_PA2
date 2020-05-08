@@ -1,0 +1,119 @@
+.menu-title {
+	-fx-font-size: 24;
+	-fx-text-fill: #7D390B;
+    -fx-text-stroke: #ffdfb4;
+    -fx-text-stroke-width: 3;
+    -fx-font-weight: bold;
+    -fx-font-family: "Cambria";
+}
+
+.welcome-title {
+    -fx-font-size: 48;
+    -fx-text-fill: #7D390B;
+    -fx-text-stroke: #ffdfb4;
+    -fx-text-stroke-width: 4;
+    -fx-font-weight: bold;
+    -fx-font-family: "Cambria";
+}
+
+.game-title {
+	-fx-font-size: 14;
+	-fx-text-fill: white;
+    -fx-text-stroke: #ffdfb4;
+    -fx-text-stroke-width: 3;
+    -fx-font-family: "Cambria";
+}
+
+
+
+
+.large-button {
+	 -fx-pref-width:200;
+	 -fx-pref-height:40;
+	 -fx-border-color: #b83911;
+	 -fx-padding: 8 15 15 15;
+     -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #f10400 0%, #6b0000 100%),
+        #ff1200,
+        #ffd59a,
+        radial-gradient(center 50% 50%, radius 100%, #f10400, #6b0000);
+     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+     -fx-font-weight: bold;
+	-fx-text-fill: white;
+    -fx-text-stroke: #ffdfb4;
+    -fx-text-stroke-width: 3;
+    -fx-font-family: "Cambria";
+}
+
+.menu-button {
+     -fx-pref-width:150;
+     -fx-pref-height:40;
+     -fx-border-color: #4b6cd8;
+     -fx-padding: 8 15 15 15;
+     -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #108eb8 0%, #1b10b8 100%),
+        #ff1200,
+        #e8eaf2,
+        radial-gradient(center 50% 50%, radius 100%, #108eb8, #1b10b8);
+     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+     -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-text-stroke: #ffdfb4;
+    -fx-text-stroke-width: 3;
+    -fx-font-family: "Cambria";
+}
+
+
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 13;
+}
+
+
+ 
+.list-cell:hover{
+    -fx-background-color: #ea9b54;
+    -fx-text-fill: black;
+}
+ 
+.list-cell:selected{
+    -fx-background-color: #f7d1af;
+    -fx-text-fill: black;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+    
+}
+
+.pane-welcome{
+    -fx-background-image: url("background_image_welcome.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 2000 1400;
+    -fx-background-position: center center;
+}
+
+.pane-game-over{
+    -fx-background-image: url("background_1.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 1280 920;
+    -fx-background-position: center center;
+}
+
+.pane-game-start{
+    -fx-background-image: url("background.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+.game-background{
+	-fx-background-color: transparent;
+}
+
+.game-control{
+    -fx-background-color: #eda76a;
+}
+
