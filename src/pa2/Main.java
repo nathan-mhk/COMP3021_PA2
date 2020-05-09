@@ -201,57 +201,49 @@ public class Main extends Application {
         // step 1. create a Label object referred by the reference variable "lbMyMoney" declared earlier.
         //      This label is for displaying the Money amount of the human player
         // you can set the money amount to be an arbitrary value now, later it will be updated by the updateHumanPlayerMoney()
-
-
+        lbMyMoney = new Label("HEY YOUR CODE IS BROKEN, YOU SHOULDN'T BE ABLE TO SEE THIS LINE OF TEXT");
 
 
         // step 2. create a ListView object referred by the reference variable "listViewHospital" declared earlier.
         // (i.e. listViewHospital = new ListView<String>();)
         // This ListView object will be showing all the strings in the listViewHospitalItems list
         // one by one on the UI. listViewHospitalItems holds strings describing each of the departments in the hospital
-
-
-
-
+        listViewHospital = new ListView<String>();
+        listViewHospital.setItems(listViewHospitalItems);
+        listViewHospital.setPrefSize(200, 200);
 
 
         // step 3. create a Label object to show the string "My Hospital" above the ListView
         // This label is for displaying the string "My Hospital" on the top of the human player department information
         // table
-
-
+        Label lbMyHospital = new Label("My Hospital");
 
 
 
         // step 4. create a Label object to show the string "Department     Waiting      Cured      Capacity      Fee     Upgrade-cost per bed"
         // This label is for displaying the string ""Department     Waiting      Cured      Capacity      Fee     Upgrade-cost per bed""
         // on the top of the human player department information table
-
-
-
+        Label lbHospitalColInfo = new Label("Department     Waiting      Cured      Capacity      Fee     Upgrade-cost per bed");
+        lbHospitalColInfo.setPadding(new Insets(10,10,10,10));
 
         // step 5. create a Vbox()
-
-
+        VBox vbHospitalDetails = new VBox();
 
 
         // step 6. put the label holding the string "Department     Waiting   ..." created above together with the ListView
         // listViewHospital into the empty vbox created above (i.e. vboxName.getChildren().addALL(lbMyHospitalTitle,listViewHospital),
         // where vboxName is the name of the Vbox() object you created above.
-
-
-
+        vbHospitalDetails.getChildren().addAll(lbHospitalColInfo, listViewHospital);
 
 
         // step 7. create another Vbox()
         // put the label holding the string "My Hospital" and the above Vbox object into this new Vbox object
         // setpadding, and setAlignment to the label(s) and the vbox as needed so that they are displayed
         // like the UI in the executable jar program
-
-
-
-
-
+        VBox vbHospitalInfo = new VBox();
+        vbHospitalInfo.getChildren().addAll(lbMyHospital, vbHospitalDetails);
+        vbHospitalInfo.setPadding(new Insets(50, 30, 20, 30));
+        vbHospitalInfo.setAlignment(Pos.CENTER);
 
 
 
@@ -260,16 +252,24 @@ public class Main extends Application {
         // the ListView for displaying the doctors is "listViewDoctor", the list holding all the doctor information in the form
         // of a string array is "listViewDoctorItems".
 
+        // "Department     Waiting      Cured      Capacity      Fee     Upgrade-cost per bed"
+        // "Name     Speciality      Skill Level      Salary      Affiliation     Occupied"
+        Label lbDoctorColInfo = new Label("Name     Speciality      Skill Level      Salary      Affiliation     Occupied");
+        lbDoctorColInfo.setPadding(new Insets(10,10,10,10));
 
+        listViewDoctor = new ListView<String>();
+        listViewDoctor.setItems(listViewDoctorItems);
+        listViewDoctor.setPrefSize(200, 200);
 
+        VBox vbDoctorsDetails = new VBox();
+        vbDoctorsDetails.getChildren().addAll(lbDoctorColInfo, listViewDoctor);
 
+        Label lbMyDoctors = new Label("My Doctors");
 
-
-
-
-
-
-
+        VBox vbDoctorsInfo = new VBox();
+        vbDoctorsInfo.getChildren().addAll(lbMyDoctors, vbDoctorsDetails);
+        vbDoctorsInfo.setPadding(new Insets(50, 30, 20, 30));
+        vbDoctorsInfo.setAlignment(Pos.CENTER);
 
 
 
@@ -293,38 +293,38 @@ public class Main extends Application {
         // b. bt_raise_fund button (handled by handleRaiseFund() )
         // c. bt_transfer_department button (handled by handleTransferDepartment())
         // d. bt_upgrade button (handled by handleUpgrade())
-
-
-
-
-
+        bt_get_training.setOnAction(e -> handleGetTraining());
+        bt_raise_fund.setOnAction(e -> handleRaiseFund());
+        bt_transfer_department.setOnAction(e -> handleTransferDepartment());
+        bt_upgrade.setOnAction(e -> handleUpgrade());
 
 
 
         // step 10. create a new TextField object referenced by the tfRecruit variable declared earlier
         // this is the text field for holding the name of the new recruited doctor by the human player
-
-
+        tfRecruit = new TextField();
+        tfRecruit.setPadding(new Insets(5,10,5,10));
 
 
         // step 11. setPadding to all the buttons created above, so that they look like that of the executable jar
-
-
-
-
-
-
+        bt_restart.setPadding(new Insets(5, 10, 5, 10));
+        bt_recruit_doctor.setPadding(new Insets(5, 10, 5, 10));
+        bt_get_training.setPadding(new Insets(5, 10, 5, 10));
+        bt_raise_fund.setPadding(new Insets(5, 10, 5, 10));
+        bt_transfer_department.setPadding(new Insets(5, 10, 5, 10));
+        bt_upgrade.setPadding(new Insets(5, 10, 5, 10));
 
 
         // step 12. set the widths of all the buttons above to be 150 pixels
         // you can call the setPrefWidth() method. For example if you wish to set
         // the width of bt_restart button to be 150 pixels, you can do
         // bt_restart.setPrefWidth(150)
-
-
-
-
-
+        bt_restart.setPrefWidth(150);
+        bt_recruit_doctor.setPrefWidth(150);
+        bt_get_training.setPrefWidth(150);
+        bt_raise_fund.setPrefWidth(150);
+        bt_transfer_department.setPrefWidth(150);
+        bt_upgrade.setPrefWidth(150);
 
 
 
@@ -332,11 +332,12 @@ public class Main extends Application {
         // you can call the setPrefHeight() method. For example if you wish to set
         // the height of bt_restart button to be 20 pixels, you can do
         // bt_restart.setPrefHeight(20)
-
-
-
-
-
+        bt_restart.setPrefHeight(20);
+        bt_recruit_doctor.setPrefHeight(20);
+        bt_get_training.setPrefHeight(20);
+        bt_raise_fund.setPrefHeight(20);
+        bt_transfer_department.setPrefHeight(20);
+        bt_upgrade.setPrefHeight(20);
 
 
         // step 14. create a Hbox object
@@ -344,19 +345,19 @@ public class Main extends Application {
         // recruit button are in the same horizon row
         // then create a Vbox object to hold all the above buttons together with the Hbox object you just created
         // vertically
+        HBox hbRecruit = new HBox(10);
+        hbRecruit.getChildren().addAll(tfRecruit, bt_recruit_doctor);
 
-
-
-
-
+        VBox vbControls = new VBox();
+        vbControls.getChildren().addAll(bt_restart, hbRecruit, bt_get_training, bt_raise_fund, bt_transfer_department, bt_upgrade);
+        vbControls.setAlignment(Pos.CENTER_RIGHT);
 
 
         // step 15. create a Hbox object
         // add the hospital image (imageHumanPlayer), the Vbox in step 7, and a similar Vbox in step 8, together with
         // the Vbox in step 14 for holding all the buttons to this new Hbox object
-
-
-
+        HBox hbHumanPlayerPane = new HBox();
+        hbHumanPlayerPane.getChildren().addAll(imageHumanPlayer, vbHospitalDetails, vbDoctorsInfo, vbControls);
 
 
         // step 16. create a Vbox object
@@ -367,11 +368,10 @@ public class Main extends Application {
         // if it works correctly, then congratulations! You have created the UI for the human player using JavaFX code
         // if it does not work, please patiently spend the time to carefully go through all the 16 steps. In particular for step 8,
         // that single step is in fact a big step consists similar code to steps 2-7.
+        VBox vbHumanPlayerPane = new VBox();
+        vbHumanPlayerPane.getChildren().addAll(lbMyMoney, hbHumanPlayerPane);
 
-
-
-
-
+        return vbHumanPlayerPane;
     }
 
 
@@ -416,34 +416,42 @@ public class Main extends Application {
         //            c. the List containing an array of strings holding the department information is in
         //               listViewHospitalItems_2 (instead of listViewHospitalItems_1)
 
+        lb_money_2 = new Label("HEY YOUR CODE IS BROKEN AGAIN YOU SHOULDN'T BE ABLE TO SEE THIS LINE OF TEXT");
+        lb_money_2.setPadding(new Insets(0, 0, 20, 0));
 
+        Label lb_2 = new Label("Computer player II");
+        lb_2.setPadding(new Insets(10,10,10,10));
 
+        listViewHospital_2 = new ListView<String>();
+        listViewHospital_2.setItems(listViewHospitalItems_2);
+        listViewHospital_2.setPrefSize(200, 200);
 
+        Label lbMyHospitalTitle_2 = new Label("Department    Waiting     Cured     Capacity    Fee    Upgrade-cost per bed");
+        lbMyHospitalTitle_2.setPadding(new Insets(0,0,10,0));
 
+        VBox paneMyHospital_2 = new VBox();
+        paneMyHospital_2.getChildren().addAll(lbMyHospitalTitle_2, listViewHospital_2);
 
+        VBox container_2 = new VBox();
+        container_2.getChildren().addAll(lb_money_2, paneMyHospital_2);
+        container_2.setAlignment(Pos.CENTER_LEFT);
 
-
-
-
-
-
-
-
-
+        VBox pane_player_2 = new VBox();
+        pane_player_2.getChildren().addAll(lb_2, container_2);
+        pane_player_2.setAlignment(Pos.CENTER);
+        pane_player_2.setPadding(new Insets(50, 50, 20, 50));
 
 
         // step 2. create a new Hbox object
-
+        HBox hbCPUPane = new HBox();
 
 
         // step 3. put the imageComputerPlayer_1, pane_player_1 for computer player 1, imageComputerPlayer_2, and
         // the final Vbox created in step 1 for computer player 2 to the Hbox created in step 2
         // return this Hbox as the return value of this method.
+        hbCPUPane.getChildren().addAll(imageComputerPlayer_1, pane_player_1, imageComputerPlayer_2, pane_player_2);
 
-
-
-
-
+        return hbCPUPane;
     }
 
 
@@ -492,8 +500,24 @@ public class Main extends Application {
                  6b.  use the panes imageComputerPlayer_1, imageComputerPlayer_1  instead of imageHumanPlayer, and do the same operation as in 6a to the computer players
          */
 
+        imageHumanPlayer.getChildren().clear();
+        imageComputerPlayer_1.getChildren().clear();
+        imageComputerPlayer_2.getChildren().clear();
 
+        int capacity = humanPlayer.getHospitalScale();
+        Image image_1 = new Image("file:hospital_" + capacity + ".png");
+        ImageView imageView_1 = new ImageView(image_1);
+        imageHumanPlayer.getChildren().add(imageView_1);
 
+        capacity = computerPlayer_1.getHospitalScale();
+        Image image_2 = new Image("file:hospital_" + capacity + ".png");
+        ImageView imageView_2 = new ImageView(image_2);
+        imageComputerPlayer_1.getChildren().add(imageView_2);
+
+        capacity = computerPlayer_2.getHospitalScale();
+        Image image_3 = new Image("file:hospital_" + capacity + ".png");
+        ImageView imageView_3 = new ImageView(image_3);
+        imageComputerPlayer_2.getChildren().add(imageView_3);
     }
 
     private void handleRestart()  throws Exception
@@ -559,10 +583,23 @@ public class Main extends Application {
         //             method extract the name to search for the doctor object from the doctors list of the player.
         //             WE ASSUME DOCTOR NAMES ARE UNIQUE, if this is not the case, selectDoctor() will not work correctly
 
+        if ((selectedDoctor == null) || (name.length() == 0)) {
+            printResult.add("You have to select a unoccupied doctor or input the new doctor's name.\n");
+            updateListViewLogWindow();
+            return;
+        }
+        selectedDoctor.recruitDoctor(humanPlayer, name);
 
+        printResult.add("A new doctor is recruited " + selectedDoctor);
+        updateListViewLogWindow();
 
+        selectedDoctor.endTurn();
 
+        updateListViewDoctorItems();
 
+        updateHumanPlayerMoney();
+
+        listViewSelectedDoctor = null;
     }
 
 
@@ -591,8 +628,24 @@ public class Main extends Application {
         //             method extract the name to search for the doctor object from the doctors list of the player.
         //             WE ASSUME DOCTOR NAMES ARE UNIQUE, if this is not the case, selectDoctor() will not work correctly
 
+        if (selectedDoctor == null) {
+            printResult.add("You have to select a unoccupied doctor.\n");
+            updateListViewLogWindow();
+            return;
+        }
+        selectedDoctor.goTraining(humanPlayer);
 
+        selectedDoctor.endTurn();
 
+        printResult.add("GetTraining");
+
+        printResult.add("After training:\n" + selectedDoctor + "\n");
+
+        updateListViewLogWindow();
+
+        updateHumanPlayerMoney();
+
+        listViewSelectedDoctor = null;
     }
 
     private void handleRaiseFund()
@@ -621,7 +674,24 @@ public class Main extends Application {
         //             method extract the name to search for the doctor object from the doctors list of the player.
         //             WE ASSUME DOCTOR NAMES ARE UNIQUE, if this is not the case, selectDoctor() will not work correctly
 
+        if (selectedDoctor == null) {
+            printResult.add("Please select a unoccupied doctor.\n");
+            updateListViewLogWindow();
+            return;
+        }
+        int fundAmount = selectedDoctor.raiseFund();
+        humanPlayer.collectMoney(fundAmount);
 
+        selectedDoctor.endTurn();
+
+        printResult.add(selectedDoctor.getName() + " raises " + fundAmount + " successfully.\n");
+
+        updateListViewLogWindow();
+
+        updateHumanPlayerMoney();
+        updateListViewDoctorItems();
+
+        listViewSelectedDoctor = null;
     }
 
     private void handleTransferDepartment()
@@ -691,8 +761,27 @@ public class Main extends Application {
         //             the selected doctor, and holding all the info of the selected department for the upgrade
         //             WE ASSUME DOCTOR NAMES ARE UNIQUE, if this is not the case, selectDoctor() will not work correctly
 
+        if (selectedDoctor == null) {
+            printResult.add("You have to select a unoccupied doctor or a department.\n");
+            updateListViewLogWindow();
+            return;
+        }
+        selectedDoctor.upgradeDepartment(humanPlayer, selectedDepartment);
 
+        selectedDoctor.endTurn();
 
+        printResult.add(selectedDepartment.getName() + " is upgraded.");
+
+        updateListViewLogWindow();
+
+        updateHumanPlayerMoney();
+        updateListViewDoctorItems();
+        updateListViewHospitalItems();
+
+        load_figure();
+
+        listViewSelectedDoctor = null;
+        listViewSelectedHospital = null;
     }
 
 
@@ -703,7 +792,7 @@ public class Main extends Application {
          */
 
         // step 1. set lbMyMoney to be ""My money: " + humanPlayer.getMoney(), using setText() of the label
-
+        lbMyMoney.setText("My money: " + humanPlayer.getMoney());
     }
 
     private void updateComputerPlayerMoney()
@@ -712,13 +801,10 @@ public class Main extends Application {
             TODO: update the computer players' money.
          */
         // step 1. set lb_money_1 to be ""My money: " + computerPlayer_1.getMoney(), using setText() of the label
-
-
+        lb_money_1.setText("My money: " + computerPlayer_1.getMoney());
 
         // step 2. set lb_money_2 to be ""My money: " + computerPlayer_2.getMoney(), using setText() of the label
-
-
-
+        lb_money_2.setText("My money: " + computerPlayer_2.getMoney());
     }
 
     private void updateListViewLogWindow()
@@ -772,7 +858,30 @@ public class Main extends Application {
         //      the ListView holding the strings of departments is in listViewHospitalItems_2 (instead of listViewHospitalItems_1)
         //      for computer player 2
 
+        listViewHospitalItems_2.clear();
 
+        departments = computerPlayer_2.getDepartments();
+
+        for (int i = 0; i < departments.size(); ++i) {
+            Department department = departments.get(i);
+            String name = department.getName();
+            int waiting_count = department.getWaitingPatientCount();
+            int cured_count = department.getCuredPatientCount();
+            int capacity = department.getBedCapacity();
+            int fee = department.getFee();
+            int cost = department.getUpgradeCost();
+            if(name.equals("Fever")) //do some padding to make sure this short "Fever" string will align well in the UI
+            {
+                name = "    Fever";
+            }
+            String str_waiting_count = calibrate(waiting_count);
+            String str_cured_count = calibrate(cured_count);
+            String str_capacity = calibrate(capacity);
+            String str_fee = calibrate(fee);
+            String str_cost = calibrate(cost);
+
+            listViewHospitalItems_2.add("     " + name + "        " + str_waiting_count + "          " + str_cured_count + "         " + str_capacity + "         " + str_fee + "         " + str_cost );
+        }
     }
 
 
@@ -846,7 +955,23 @@ public class Main extends Application {
         //  Hints: 1. An example in shown in the function updateListViewHospitalItems()
         //         2. You have to work on listViewDoctorItems;
 
+        List<Doctor> doctors = humanPlayer.getDoctors();
 
+        for (int i = 0; i < doctors.size(); ++i) {
+            Doctor doctor = doctors.get(i);
+
+            String name = doctor.getName();
+            String specialty = doctor.getSpecialty();
+            int skillLv = doctor.getSpecialSkillLevel();
+            int salary = doctor.getSalary();
+            String dept = doctor.get_affiliation();
+            String occupied = doctor.isOccupied() ? "True" : "False";
+
+            if (specialty.equals("Fever")) {
+                specialty = "    Fever";
+            }
+            listViewDoctorItems.add("        " + name + "        " + specialty + "        " + skillLv + "        " + salary + "        " + dept + "        " + occupied);
+        }
     }
 
 
@@ -942,6 +1067,14 @@ public class Main extends Application {
         // In that way, whenever the user chooses a department from the GUI, we can find the corresponding department
         // object for processing through this method.
 
+        Department selectedDept = null;
+
+        if (listViewSelectedHospital != null) {
+            listViewSelectedHospital = listViewSelectedHospital.trim();
+            String deptName = listViewSelectedHospital.split(" ")[0];
+            selectedDept = getDepartment(deptName);
+        }
+        return selectedDept;
     }
 
 
@@ -951,6 +1084,12 @@ public class Main extends Application {
 
         //TODO:  by referring to the implementation of getDoctor(), finish the implementation here
 
+        for (Department dept : humanPlayer.getDepartments()) {
+            if (dept.getName().equals(departmentName)) {
+                return dept;
+            }
+        }
+        return null;
     }
 
 
@@ -1145,8 +1284,8 @@ public class Main extends Application {
                 //  step 1. get the winner name using game.getWinner()
                 //  step 2. put the string player.getName()+" won the game!" to the string reference called "result"
 
-
-
+                Player winner = game.getWinner();
+                String result = winner.getName() + " won the game!";
 
 
                 // pass the string referred by "result" to make an alert window
