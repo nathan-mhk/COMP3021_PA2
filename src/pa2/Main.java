@@ -202,6 +202,7 @@ public class Main extends Application {
         //      This label is for displaying the Money amount of the human player
         // you can set the money amount to be an arbitrary value now, later it will be updated by the updateHumanPlayerMoney()
         lbMyMoney = new Label("HEY YOUR CODE IS BROKEN, YOU SHOULDN'T BE ABLE TO SEE THIS LINE OF TEXT");
+        lbMyMoney.setPadding(new Insets(0, 0, 5, 250));
 
 
         // step 2. create a ListView object referred by the reference variable "listViewHospital" declared earlier.
@@ -217,7 +218,7 @@ public class Main extends Application {
         // This label is for displaying the string "My Hospital" on the top of the human player department information
         // table
         Label lbMyHospital = new Label("My Hospital");
-
+        lbMyHospital.setPadding(new Insets(0, 0, 15, 0));
 
 
         // step 4. create a Label object to show the string "Department     Waiting      Cured      Capacity      Fee     Upgrade-cost per bed"
@@ -254,7 +255,7 @@ public class Main extends Application {
 
         // "Department     Waiting      Cured      Capacity      Fee     Upgrade-cost per bed"
         // "Name     Speciality      Skill Level      Salary      Affiliation     Occupied"
-        Label lbDoctorColInfo = new Label("Name     Speciality      Skill Level      Salary      Affiliation     Occupied");
+        Label lbDoctorColInfo = new Label("Name     Speciality      Skill Level    Salary      Affiliation     Occupied");
         lbDoctorColInfo.setPadding(new Insets(10,10,10,10));
 
         listViewDoctor = new ListView<String>();
@@ -265,6 +266,7 @@ public class Main extends Application {
         vbDoctorsDetails.getChildren().addAll(lbDoctorColInfo, listViewDoctor);
 
         Label lbMyDoctors = new Label("My Doctors");
+        lbMyDoctors.setPadding(new Insets(0, 0, 15, 0));
 
         VBox vbDoctorsInfo = new VBox();
         vbDoctorsInfo.getChildren().addAll(lbMyDoctors, vbDoctorsDetails);
@@ -348,7 +350,7 @@ public class Main extends Application {
         HBox hbRecruit = new HBox(10);
         hbRecruit.getChildren().addAll(tfRecruit, bt_recruit_doctor);
 
-        VBox vbControls = new VBox();
+        VBox vbControls = new VBox(20);
         vbControls.getChildren().addAll(bt_restart, hbRecruit, bt_get_training, bt_raise_fund, bt_transfer_department, bt_upgrade);
         vbControls.setAlignment(Pos.CENTER_RIGHT);
 
@@ -357,7 +359,8 @@ public class Main extends Application {
         // add the hospital image (imageHumanPlayer), the Vbox in step 7, and a similar Vbox in step 8, together with
         // the Vbox in step 14 for holding all the buttons to this new Hbox object
         HBox hbHumanPlayerPane = new HBox();
-        hbHumanPlayerPane.getChildren().addAll(imageHumanPlayer, vbHospitalDetails, vbDoctorsInfo, vbControls);
+        hbHumanPlayerPane.getChildren().addAll(imageHumanPlayer, vbHospitalInfo, vbDoctorsInfo, vbControls);
+        hbHumanPlayerPane.setAlignment(Pos.CENTER);
 
 
         // step 16. create a Vbox object
@@ -370,6 +373,7 @@ public class Main extends Application {
         // that single step is in fact a big step consists similar code to steps 2-7.
         VBox vbHumanPlayerPane = new VBox();
         vbHumanPlayerPane.getChildren().addAll(lbMyMoney, hbHumanPlayerPane);
+        vbHumanPlayerPane.setPadding(new Insets(0, 0, 150, 0));
 
         return vbHumanPlayerPane;
     }
@@ -450,6 +454,7 @@ public class Main extends Application {
         // the final Vbox created in step 1 for computer player 2 to the Hbox created in step 2
         // return this Hbox as the return value of this method.
         hbCPUPane.getChildren().addAll(imageComputerPlayer_1, pane_player_1, imageComputerPlayer_2, pane_player_2);
+        hbCPUPane.setAlignment(Pos.CENTER);
 
         return hbCPUPane;
     }
@@ -590,7 +595,10 @@ public class Main extends Application {
         }
         selectedDoctor.recruitDoctor(humanPlayer, name);
 
-        printResult.add("A new doctor is recruited " + selectedDoctor);
+        int index = humanPlayer.getDoctors().size() - 1;
+        Doctor recruitedDr = humanPlayer.getDoctors().get(index);
+
+        printResult.add("A new doctor is recruited " + recruitedDr);
         updateListViewLogWindow();
 
         selectedDoctor.endTurn();
@@ -644,6 +652,8 @@ public class Main extends Application {
         updateListViewLogWindow();
 
         updateHumanPlayerMoney();
+
+        updateListViewDoctorItems();
 
         listViewSelectedDoctor = null;
     }
@@ -761,7 +771,7 @@ public class Main extends Application {
         //             the selected doctor, and holding all the info of the selected department for the upgrade
         //             WE ASSUME DOCTOR NAMES ARE UNIQUE, if this is not the case, selectDoctor() will not work correctly
 
-        if (selectedDoctor == null) {
+        if ((selectedDoctor == null) || (selectedDepartment == null)) {
             printResult.add("You have to select a unoccupied doctor or a department.\n");
             updateListViewLogWindow();
             return;
@@ -970,7 +980,10 @@ public class Main extends Application {
             if (specialty.equals("Fever")) {
                 specialty = "    Fever";
             }
-            listViewDoctorItems.add("        " + name + "        " + specialty + "        " + skillLv + "        " + salary + "        " + dept + "        " + occupied);
+            if (dept.equals("Fever")) {
+                dept = "    Fever";
+            }
+            listViewDoctorItems.add("    " + name + "       " + specialty + "              " + skillLv + "             " + salary + "           " + dept + "           " + occupied);
         }
     }
 
