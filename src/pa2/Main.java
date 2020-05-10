@@ -727,6 +727,7 @@ public class Main extends Application {
                 updateListViewDoctorItems();
                 String result = selectedDoctor.getName() + " transfers to " + selectedDepartment.getName() + "\n";
                 printResult.add(result);
+                updateListViewLogWindow();
                 listViewSelectedDoctor = null;
                 listViewSelectedHospital = null;
             }
